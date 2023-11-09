@@ -1,5 +1,15 @@
 import { Server } from 'socket.io'
 import AdonisServer from '@ioc:Adonis/Core/Server'
+
+export interface SocketMessage {
+  command: string
+  params?: object
+  data?: object
+  status: 'success' | 'error'
+  token: string
+  id?: string[]
+}
+
 class Ws {
   public io: Server
   private booted = false
