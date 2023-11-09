@@ -20,6 +20,15 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'TK' }
-})
+Route.get('/', async () => ({ hello: 'TK' }))
+
+Route.group(() => {
+  Route.post('register', 'AuthController.register')
+  Route.post('login', 'AuthController.login')
+}).prefix('/v1')
+
+Route.group(() => {
+  Route.resource('users', 'UsersController')
+    .apiOnly()
+    .middleware({ '*': ['auth'] })
+}).prefix('/v1')
