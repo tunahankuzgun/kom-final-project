@@ -11,7 +11,12 @@ class Ws {
       return
     }
     this.booted = true
-    this.io = new Server(AdonisServer.instance!)
+    this.io = new Server(AdonisServer.instance!, {
+      cors: {
+        origin: '*',
+        methods: ['GET', 'POST'],
+      },
+    })
   }
 }
 export default new Ws()
