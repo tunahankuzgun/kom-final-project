@@ -5,9 +5,6 @@ export interface SocketMessage {
   command: string
   params?: object
   data?: object
-  status: 'success' | 'error'
-  token: string
-  id?: string[]
 }
 
 class Ws {

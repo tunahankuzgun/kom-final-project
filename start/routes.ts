@@ -29,6 +29,8 @@ Route.group(() => {
 
 Route.group(() => {
   Route.resource('users', 'UsersController')
-    .apiOnly()
-    .middleware({ '*': ['auth'] })
+}).prefix('/v1')
+
+Route.group(() => {
+  Route.resource('vfd', 'SocketsController')
 }).prefix('/v1')
