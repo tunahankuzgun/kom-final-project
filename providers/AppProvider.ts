@@ -14,6 +14,7 @@ export default class AppProvider {
   public async ready() {
     // App is ready
     await import('../start/socket-ws')
+    await import('../start/socket-raspberry')
   }
 
   public async shutdown() {

@@ -3,11 +3,11 @@ import Logger from '@ioc:Adonis/Core/Logger'
 import { v1 as uuidv1 } from 'uuid'
 import Raspberry from 'App/Services/Raspberry'
 
-Ws.boot()
+Raspberry.boot()
 /**
  * Listen for incoming socket connections
  */
-Ws.io.on('connection', (socket) => {
+Raspberry.io.on('connection', (socket) => {
   const uuid = uuidv1()
   socket.join(uuid)
 
@@ -15,8 +15,8 @@ Ws.io.on('connection', (socket) => {
     try {
       //console.log('Ws.io.on.socket.command', message);
       const data = JSON.stringify({ ...message, id: uuid })
-      console.log('Modbus', data)
-      Raspberry.io.emit('message', {
+      console.log('UI Emitted data:', data)
+      Ws.io.emit('message', {
         data,
       })
     } catch (error) {
@@ -25,4 +25,4 @@ Ws.io.on('connection', (socket) => {
   })
 })
 
-Ws.io.listen(4000)
+Raspberry.io.listen(4001)

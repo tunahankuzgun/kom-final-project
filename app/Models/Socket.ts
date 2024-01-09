@@ -6,7 +6,7 @@ export default class Socket extends BaseModel {
   public id: number
 
   @column()
-  public data: object
+  public data: JSON
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

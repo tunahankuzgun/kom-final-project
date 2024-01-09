@@ -1,7 +1,13 @@
 import { Server } from 'socket.io'
 import AdonisServer from '@ioc:Adonis/Core/Server'
 
-class Ws {
+// export interface SocketMessage {
+//   command: string
+//   params?: object
+//   data?: object
+// }
+
+class Raspberry {
   public io: Server
   private booted = false
   public boot() {
@@ -20,4 +26,4 @@ class Ws {
     })
   }
 }
-export default new Ws()
+export default new Raspberry()
