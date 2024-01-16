@@ -5,12 +5,12 @@ export default class LoginAuthValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    username: schema.string({}, []),
+    email: schema.string({}, []),
     password: schema.string.optional({}, [
       rules.minLength(6),
       rules.requiredIfNotExists('password'),
     ]),
-    withToken: schema.boolean.optional([rules.requiredIfNotExists('username')]),
+    withToken: schema.boolean.optional([rules.requiredIfNotExists('email')]),
   })
 
   public messages: CustomMessages = {}

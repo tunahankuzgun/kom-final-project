@@ -3,7 +3,7 @@ import User from 'App/Models/User'
 // import CreateUserValidator from 'App/Validators/CreateUserValidator'
 import IndexUserValidator from 'App/Validators/IndexUserValidator'
 import ShowUserValidator from 'App/Validators/ShowUserValidator'
-// import UpdateUserValidator from 'App/Validators/UpdateUserValidator'
+import UpdateUserValidator from 'App/Validators/UpdateUserValidator'
 
 export default class UsersController {
   public async index({ request, response }: HttpContextContract) {
@@ -20,6 +20,7 @@ export default class UsersController {
 
   // public async store({ request, response }: HttpContextContract) {
   //   try {
+
   //     const user = new User()
   //     await user.save()
 
@@ -39,11 +40,11 @@ export default class UsersController {
 
   public async update({ request, response }: HttpContextContract) {
     const { id } = await request.validate(ShowUserValidator)
-    // const { username, password, type } = await request.validate(UpdateUserValidator)
+    const { email, password } = await request.validate(UpdateUserValidator)
 
     const user = await User.findOrFail(id)
 
-    // user.merge({ username, password, type })
+    user.merge({ email, password })
     await user.save()
 
     return response.ok(user)

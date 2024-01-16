@@ -5,8 +5,8 @@ export default class CreateUserValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    username: schema.string([
-      rules.unique({ table: 'users', column: 'username', caseInsensitive: true }),
+    email: schema.string([
+      rules.unique({ table: 'users', column: 'email', caseInsensitive: true }),
     ]),
     password: schema.string({}, [rules.minLength(6)]),
     type: schema.enum(['guest', 'user', 'programmer', 'moderator', 'admin', 'developer'] as const),

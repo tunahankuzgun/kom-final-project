@@ -5,8 +5,8 @@ export default class RegisterAuthValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    username: schema.string({}, [
-      rules.unique({ table: 'users', column: 'username', caseInsensitive: true }),
+    email: schema.string({}, [
+      rules.unique({ table: 'users', column: 'email', caseInsensitive: true }),
     ]),
     password: schema.string({}, [rules.minLength(6)]),
   })
