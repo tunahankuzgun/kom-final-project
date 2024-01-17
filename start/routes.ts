@@ -25,12 +25,8 @@ Route.get('/', async () => ({ hello: 'TK' }))
 Route.group(() => {
   Route.post('register', 'AuthController.register')
   Route.post('login', 'AuthController.login')
-}).prefix('/v1')
 
-Route.group(() => {
   Route.resource('users', 'UsersController')
-}).prefix('/v1')
-
-Route.group(() => {
-  Route.resource('vfd', 'SocketsController')
+    .apiOnly()
+    .middleware({ '*': ['auth'] })
 }).prefix('/v1')

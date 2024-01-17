@@ -2,7 +2,6 @@ import Ws from 'App/Services/Ws'
 import Logger from '@ioc:Adonis/Core/Logger'
 import { v1 as uuidv1 } from 'uuid'
 import Raspberry from 'App/Services/Raspberry'
-import Token from 'App/Services/Token'
 
 Ws.boot()
 /**
@@ -14,10 +13,8 @@ Ws.io.on('connection', (socket) => {
 
   socket.on('message', async (message) => {
     try {
-      // const user = await Token.validate(message.accessToken)
-      // console.log(user)
       const data = JSON.stringify({ ...message, id: uuid })
-      console.log('Modbus', data)
+      console.log('to ui', data)
       Raspberry.io.emit('message', {
         data,
       })
